@@ -1,0 +1,158 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
+
+h1, h2, h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+h1{text-align: center;}
+
+subheading{
+    text-align: center;
+}
+
+b#main-heading {
+    text-align: center;
+    font-size: 36px;
+    color: white;
+  }
+
+  /* Full-screen background image for the masthead */
+.masthead {
+    background-image: url('../assets/img/Maroon-Bells-Sunrise.jpg'); /* adjust path if needed */
+    background-repeat: no-repeat;
+    background-size: cover;               /* fills screen, may crop edges */
+    background-position: center center;   /* keeps it centered */
+    height: 100vh;                         /* full screen height */
+    display: flex;
+    align-items: center;                  /* vertical centering */
+    justify-content: center;             /* horizontal centering */
+    text-align: center;
+    color: white;                         /* or any text color you prefer */
+  }
+  
+  /* Styles for the title and subheading */
+  .site-heading h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .site-heading .subheading {
+    font-size: 1.5rem;
+
+    /* Custom Navbar Styles */
+.custom-navbar {
+    background: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 1rem 0;
+    transition: background 0.3s ease;
+  }
+  
+  .custom-navbar .nav-link {
+    color: #ffffff;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #facc15; /* gold-ish hover color */
+    text-decoration: underline;
+  }
+  
+  .custom-navbar .navbar-brand {
+    color: #facc15;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-navbar .navbar-brand:hover {
+    color: #ffffff;
+
+  }
+  /* Background header image settings */
+header.masthead {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header text */
+.site-heading {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+/* Interests section */
+.interests {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.interests h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Navbar custom style */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600;
+    color: white !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa;
+
+}
+
+.interests {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.interests h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.interests ol {
+    padding-left: 1.2rem;
+}
+
+.interests ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}

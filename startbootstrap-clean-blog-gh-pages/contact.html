@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" PONG Game ="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" PONG Game="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+      
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">AI Game</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/PONG.jpeg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Lets Play a Game</h1>
+                            <span class="subheading">I hope you remember this classic!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>Pong Game</title>
+          <style>
+         <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pong Game (1 Player with CPU Difficulty)</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      background: #000;
+      display: none;
+      margin: 20px auto;
+      border: 2px solid #fff;
+    }
+    .instructions {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .menu {
+      margin-top: 50px;
+    }
+    .btn {
+      background-color: #444;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Pong Game </h1>
+
+  <div class="menu">
+    <h2>Select CPU Difficulty</h2>
+    <button class="btn" onclick="startGame('easy')">Easy</button>
+    <button class="btn" onclick="startGame('medium')">Medium</button>
+    <button class="btn" onclick="startGame('hard')">Hard</button>
+    <button class="btn" onclick="startGame('impossible')">💀 Impossible</button>
+  </div>
+
+  <canvas id="pong" width="800" height="500"></canvas>
+  <div class="instructions" id="instructions" style="display: none;">
+    <p><strong>Controls:</strong> Use <kbd>W</kbd> to move up and <kbd>S</kbd> to move down.</p>
+    <p>Try to block the ball... if you can 😈</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("pong");
+    const ctx = canvas.getContext("2d");
+    const instructions = document.getElementById("instructions");
+
+    const paddleWidth = 10, paddleHeight = 100;
+    const player = { x: 0, y: canvas.height / 2 - 50, dy: 0 };
+    const ai = { x: canvas.width - paddleWidth, y: canvas.height / 2 - 50 };
+    const ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 10, dx: 5, dy: 5 };
+
+    let aiReactionSpeed = 0.05;
+    let impossibleMode = false;
+
+    function setDifficulty(level) {
+      impossibleMode = false;
+      switch (level) {
+        case "easy":
+          aiReactionSpeed = 0.02;
+          break;
+        case "medium":
+          aiReactionSpeed = 0.05;
+          break;
+        case "hard":
+          aiReactionSpeed = 0.1;
+          break;
+        case "impossible":
+          impossibleMode = true;
+          break;
+      }
+    }
+
+    function drawRect(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function draw() {
+      drawRect(0, 0, canvas.width, canvas.height, "black");
+      drawRect(player.x, player.y, paddleWidth, paddleHeight, "white");
+      drawRect(ai.x, ai.y, paddleWidth, paddleHeight, "white");
+      drawCircle(ball.x, ball.y, ball.radius, "white");
+    }
+
+    function update() {
+      player.y += player.dy;
+      player.y = Math.max(0, Math.min(canvas.height - paddleHeight, player.y));
+
+      // AI movement
+      if (impossibleMode) {
+        // AI perfectly tracks the ball
+        ai.y = ball.y - paddleHeight / 2;
+      } else {
+        // Regular difficulty AI
+        ai.y += (ball.y - (ai.y + paddleHeight / 2)) * aiReactionSpeed;
+      }
+
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+        ball.dy *= -1;
+      }
+
+      let paddle = ball.x < canvas.width / 2 ? player : ai;
+      if (
+        ball.x - ball.radius < paddle.x + paddleWidth &&
+        ball.x + ball.radius > paddle.x &&
+        ball.y > paddle.y &&
+        ball.y < paddle.y + paddleHeight
+      ) {
+        ball.dx *= -1;
+      }
+
+      if (ball.x < 0 || ball.x > canvas.width) {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        ball.dx *= -1;
+      }
+    }
+
+    function gameLoop() {
+      update();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "w") player.dy = -6;
+      if (e.key === "s") player.dy = 6;
+    });
+
+    document.addEventListener("keyup", e => {
+      if (["w", "s"].includes(e.key)) player.dy = 0;
+    });
+
+    function startGame(difficulty) {
+      setDifficulty(difficulty);
+      document.querySelector(".menu").style.display = "none";
+      canvas.style.display = "block";
+      instructions.style.display = "block";
+      gameLoop();
+    }
+  </script>
+</body>
+</html>
+
+ 
+</body>
+</html>
+
+
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Take deep breaths you can do this! Even on the most challenging difficulty.</p>
+                        <div class="my-5">
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- * * SB Forms Contact Form * *-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- This form is pre-integrated with SB Forms.-->
+                            <!-- To make this form functional, sign up at-->
+                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                            <!-- to get an API token!-->
+                            
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                   
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Craig Warnick 2025</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+      
+    </body>
+</html>
